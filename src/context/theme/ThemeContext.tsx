@@ -7,6 +7,7 @@ export type ThemeState = {
   currentTheme: 'light' | 'dark';
   colors: {
     opaque: string;
+    contrastText: string;
   };
 } & Theme;
 
@@ -53,6 +54,7 @@ export const lightTheme: ThemeState = {
     background: 'white',
     card: '#fff',
     text: '#111',
+    contrastText: '#eee',
     border: '#abbeed',
     notification: 'teal',
     opaque: 'rgba(0,0,0,0.25)',
@@ -67,6 +69,7 @@ export const darkTheme: ThemeState = {
     background: '#0f0f0f',
     card: '#1c1c1c',
     text: '#eee',
+    contrastText: '#111',
     border: '#1f397a',
     notification: 'teal',
     opaque: 'rgba(255,255,255,0.25)',

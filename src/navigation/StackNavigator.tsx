@@ -2,12 +2,15 @@ import React, { useContext } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import { ThemeContext } from '../context/theme/ThemeContext';
+import PokemonScreen from '../screens/PokemonScreen';
+import { SimplePokemon } from '../interfaces/pokemonInterfaces';
 
-export type RootStackParamList = {
+export type RootStackParams = {
   HomeScreen: undefined;
+  PokemonScreen: { pokemon: SimplePokemon; color: string };
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParams>();
 
 const StackNavigator = () => {
   const {
@@ -18,6 +21,7 @@ const StackNavigator = () => {
       initialRouteName="HomeScreen"
       screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="PokemonScreen" component={PokemonScreen} />
     </Stack.Navigator>
   );
 };

@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { ThemeContext } from '../context/theme/ThemeContext';
 
-const Spinner = () => {
+const Spinner = ({ size = 50 }: { size?: number }) => {
   const {
     theme: { colors },
   } = useContext(ThemeContext);
 
-  return <ActivityIndicator size={50} color={colors.primary} />;
+  return <ActivityIndicator size={size} color={colors.primary} />;
 };
 
 export default Spinner;
