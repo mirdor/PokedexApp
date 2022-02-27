@@ -8,6 +8,7 @@ export type ThemeState = {
   colors: {
     opaque: string;
     contrastText: string;
+    searchBarBG: string;
   };
 } & Theme;
 
@@ -57,7 +58,8 @@ export const lightTheme: ThemeState = {
     contrastText: '#eee',
     border: '#abbeed',
     notification: 'teal',
-    opaque: 'rgba(0,0,0,0.25)',
+    opaque: 'rgba(0,0,0,0.10)',
+    searchBarBG: '#ededed',
   },
 };
 
@@ -72,7 +74,8 @@ export const darkTheme: ThemeState = {
     contrastText: '#111',
     border: '#1f397a',
     notification: 'teal',
-    opaque: 'rgba(255,255,255,0.25)',
+    opaque: 'rgba(255,255,255,0.4)',
+    searchBarBG: '#363636',
   },
 };
 

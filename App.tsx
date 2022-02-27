@@ -1,14 +1,14 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import StackNavigator from './src/navigation/StackNavigator';
 import ThemeProvider from './src/context/theme/ThemeContext';
+import BottomTabNavigator from './src/navigation/BottomTabNavigator';
 
 const App = () => {
   return (
     <ThemeProvider>
       <NavigationContainer>
-        <StackNavigator />
+        <BottomTabNavigator />
       </NavigationContainer>
     </ThemeProvider>
   );
