@@ -52,6 +52,13 @@ const PokemonScreen = ({ navigation, route }: Props) => {
         ) : (
           <PokemonDetails pokemon={pokemonDetails} />
         )}
+
+        {/* Footer */}
+        {!isLoading && (
+          <View style={{ ...styles.footer, backgroundColor: color }}>
+            <FadeInImage uri={pokemonDetails.sprites.front_default} style={styles.basicSprite} />
+          </View>
+        )}
       </ScrollView>
     </>
   );
@@ -95,6 +102,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  basicSprite: {
+    width: 120,
+    height: 120,
+  },
+  footer: {
+    marginTop: 20,
+    paddingVertical: 0,
+    alignItems: 'center',
+    borderTopEndRadius: 100,
+    borderTopStartRadius: 100,
   },
 });
 

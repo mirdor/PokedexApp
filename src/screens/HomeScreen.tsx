@@ -38,7 +38,8 @@ const HomeScreen = () => {
                 ...globalStyles.globalMargin,
                 color: colors.text,
                 top: top + 20,
-                marginBottom: top + 20,
+                marginBottom: top + 40,
+                textAlign: 'center',
               }}>
               Pokedex
             </Text>

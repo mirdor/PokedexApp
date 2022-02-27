@@ -1,32 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { PokemonDetails as IPokemonDetails } from '../interfaces/pokemonInterfaces';
 import { FadeInImage } from './FadeInImage';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 interface Props {
   pokemon: IPokemonDetails;
 }
 
 const PokemonDetails = ({ pokemon }: Props) => {
+  const {
+    theme: { colors },
+  } = useContext(ThemeContext);
   return (
     <>
       {/* Types */}
       <View style={{ ...styles.container }}>
-        <Text style={styles.title}>Types</Text>
+        <Title text="Types" />
         <View style={{ flexDirection: 'row' }}>
           {pokemon.types.map(({ type }) => (
-            <Text style={{ ...styles.regularText, marginRight: 10 }} key={type.name}>
-              {type.name}
-            </Text>
+            <ContentText content={type.name} key={type.name} margin />
           ))}
         </View>
-        <Text style={styles.title}>Weight</Text>
-        <Text style={styles.regularText}>{pokemon.weight / 10} kg</Text>
+        <Title text="Weight" />
+        <ContentText content={`${pokemon.weight / 10} kg`} />
       </View>
 
       {/* Sprites */}
       <View style={{ ...styles.container }}>
-        <Text style={styles.title}>Sprites</Text>
+        <Title text="Sprites" />
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <FadeInImage uri={pokemon.sprites.front_default} style={styles.basicSprite} />
@@ -37,47 +39,70 @@ const PokemonDetails = ({ pokemon }: Props) => {
 
       {/* Abilities */}
       <View style={{ ...styles.container }}>
-        <Text style={styles.title}>Abilities</Text>
+        <Title text="Abilities" />
         <View style={{ flexDirection: 'row' }}>
           {pokemon.abilities.map(({ ability }) => (
-            <Text style={{ ...styles.regularText, marginRight: 10 }} key={ability.name}>
-              {ability.name}
-            </Text>
+            <ContentText content={ability.name} key={ability.name} margin />
           ))}
         </View>
       </View>
 
       {/* Moves */}
       <View style={{ ...styles.container }}>
-        <Text style={styles.title}>Moves</Text>
+        <Title text="Moves" />
         <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
           {pokemon.moves.map(({ move }) => (
-            <Text style={{ ...styles.regularText, marginRight: 10 }} key={move.name}>
-              {move.name}
-            </Text>
+            <ContentText content={move.name} key={move.name} margin />
           ))}
         </View>
       </View>
 
       {/* Stats */}
       <View style={{ ...styles.container }}>
-        <Text style={styles.title}>Stats</Text>
+        <Title text="Stats" />
         <View>
           {pokemon.stats.map((stat, index) => (
             <View key={stat.stat.name + index} style={{ flexDirection: 'row' }}>
-              <Text style={{ ...styles.regularText, marginRight: 10, width: 160 }}>
+              <Text
+                style={{ ...styles.regularText, marginRight: 10, width: 160, color: colors.text }}>
                 {stat.stat.name}
               </Text>
-              <Text style={{ ...styles.regularText, fontWeight: 'bold' }}>{stat.base_stat}</Text>
+              <ContentText content={String(stat.base_stat)} bold />
             </View>
           ))}
         </View>
-
-        <View style={{ marginBottom: 20, alignItems: 'center' }}>
-          <FadeInImage uri={pokemon.sprites.front_default} style={styles.basicSprite} />
-        </View>
       </View>
     </>
+  );
+};
+
+const Title = ({ text }: { text: string }) => {
+  const {
+    theme: { colors },
+  } = useContext(ThemeContext);
+  return <Text style={{ ...styles.title, color: colors.text }}>{text}</Text>;
+};
+
+interface ContentTextProps {
+  content: string;
+  bold?: boolean;
+  margin?: boolean;
+}
+
+const ContentText = ({ content, bold = false, margin = false }: ContentTextProps) => {
+  const {
+    theme: { colors },
+  } = useContext(ThemeContext);
+  return (
+    <Text
+      style={{
+        ...styles.regularText,
+        fontWeight: bold ? 'bold' : 'normal',
+        marginRight: margin ? 10 : 0,
+        color: colors.text,
+      }}>
+      {content}
+    </Text>
   );
 };
 
