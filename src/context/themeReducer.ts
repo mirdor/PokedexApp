@@ -18,7 +18,7 @@ export const lightTheme: ThemeState = {
   currentTheme: "light",
   dark: false,
   colors: {
-    primary: "#6f6de8",
+    primary: "#f23f29",
     background: "white",
     card: "#fff",
     text: "#111",
@@ -34,7 +34,7 @@ export const darkTheme: ThemeState = {
   currentTheme: "dark",
   dark: true,
   colors: {
-    primary: "#3f3dc4",
+    primary: "#f0513e",
     background: "#0f0f0f",
     card: "#1c1c1c",
     text: "#eee",
