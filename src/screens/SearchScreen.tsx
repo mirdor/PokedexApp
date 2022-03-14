@@ -9,6 +9,7 @@ import usePokemonSearch from "../hooks/usePokemonSearch";
 import globalStyles from "../styles/globalStyles";
 import { useState } from "react";
 import { SimplePokemon } from "../types/pokemonTypes";
+import Loading from "../components/Loading";
 
 const SearchScreen = () => {
   const { top } = useSafeAreaInsets();
@@ -23,6 +24,14 @@ const SearchScreen = () => {
   const [filteredPokemons, setFilteredPokemons] = useState<SimplePokemon[]>([]);
 
   useEffect(() => {
+    filterPokemons(term);
+  }, [term]);
+
+  if (isFetching) {
+    return <Loading />;
+  }
+
+  const filterPokemons = (term: string) => {
     if (term.length === 0) return setFilteredPokemons([]);
 
     if (isNaN(Number(term))) {
@@ -37,16 +46,7 @@ const SearchScreen = () => {
       );
       setFilteredPokemons(pokemonById ? [pokemonById] : []);
     }
-  }, [term]);
-
-  if (isFetching) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Spinner />
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
+  };
 
   return (
     <View style={{ flex: 1, alignItems: "center" }}>
